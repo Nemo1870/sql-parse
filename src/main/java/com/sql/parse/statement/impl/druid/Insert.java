@@ -140,7 +140,7 @@ public class Insert extends com.sql.parse.statement.Insert {
      */
     public Insert setSelect(com.sql.parse.statement.Select select) {
         if (insert.getValuesList() == null || insert.getValuesList().isEmpty()) {
-            Select s = (Select) select;
+            Select s = Select.parse(select.getSql(false));
             insert.setQuery(s.getSelect().getSelect());
         } else {
             throw BaseException.errorCode(SqlParseConstant.CODE_019);
