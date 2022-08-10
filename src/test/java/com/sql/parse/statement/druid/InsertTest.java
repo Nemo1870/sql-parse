@@ -11,7 +11,6 @@ import org.junit.Test;
 
 
 /**
- * @team IPU
  * @date 2019年4月30日上午09:58:02
  * @desc Insert测试类
  */

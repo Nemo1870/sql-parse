@@ -14,7 +14,6 @@ import org.junit.Test;
 
 
 /**
- * @team IPU
  * @date 2019年4月29日上午11:20:58··
  * @desc Select语法单元测试类
  */
@@ -588,17 +587,17 @@ public class SelectTest {
     @Test
     public void testSelectWithConnNameAndJoin() {
         try {
-            Select select = Select.parse("select * from ipu_db_demo");
-            select.join("ipu_sql_config", new EqualsTo("pk", "id"));
+            Select select = Select.parse("select * from db_demo");
+            select.join("sql_config", new EqualsTo("pk", "id"));
             select.where("sql='abc'");
 //        select.and("a='abc'");
             Assert.assertEquals(
                     SqlFormatter.format(select.getSql()),
-                    SqlFormatter.format("SELECT * FROM ipu_db_demo JOIN ipu_sql_config ON pk = id WHERE sql = 'abc'")
+                    SqlFormatter.format("SELECT * FROM db_demo JOIN sql_config ON pk = id WHERE sql = 'abc'")
             );
             Assert.assertEquals(
                     SqlFormatter.format(select.getSql(false)),
-                    SqlFormatter.format("SELECT * FROM ipu_db_demo JOIN ipu_sql_config ON pk = id WHERE sql = 'abc'")
+                    SqlFormatter.format("SELECT * FROM db_demo JOIN sql_config ON pk = id WHERE sql = 'abc'")
             );
         } catch (Exception e) {
             Assert.fail(e.getMessage());

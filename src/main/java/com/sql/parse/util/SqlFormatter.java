@@ -6,7 +6,6 @@ import java.util.Set;
 import java.util.StringTokenizer;
 
 /**
- * @team IPU
  * @date 2019/4/30 15:06
  * @desc sql格式化工具
  */
