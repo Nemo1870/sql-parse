@@ -379,12 +379,21 @@ public class Select extends com.sql.parse.statement.Select {
     public Select groupBy(String... columnNames) {
         PlainSelect plainSelect = (PlainSelect) select.getSelectBody();
         GroupByElement groupBys = plainSelect.getGroupBy();
-        GroupByElement newGroupBys = new GroupByElement();
+        GroupByElement newGroupBys;
         if (groupBys != null ) {
             newGroupBys = groupBys;
-        }
-        for (String columnName : columnNames) {
-            newGroupBys.addGroupingSet(new Column(columnName));
+            List<Expression> expressions = newGroupBys.getGroupByExpressions();
+            for (String columnName : columnNames) {
+                expressions.add(ExpressionBuilder.parse(columnName));
+            }
+            newGroupBys.setGroupByExpressions(expressions);
+        } else {
+            newGroupBys = new GroupByElement();
+            List<Expression> expressions = new ArrayList<>();
+            for (String columnName : columnNames) {
+                expressions.add(ExpressionBuilder.parse(columnName));
+            }
+            newGroupBys.setGroupByExpressions(expressions);
         }
         plainSelect.setGroupByElement(newGroupBys);
         return this;
