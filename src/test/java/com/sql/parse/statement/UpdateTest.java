@@ -184,7 +184,7 @@ public class UpdateTest {
     @Test
     public void testUpdateWithConnName() {
         try {
-            Update update = Update.parse("update ipu_db_demo set pk = 1");
+            Update update = Update.parse("update db_demo set pk = 1");
 //        update.addColumn(new UpdateItem("pk", "1"));
             //update.addColumn(new UpdateItem("a", "1"));
             update.where("pk = 1");
@@ -192,11 +192,11 @@ public class UpdateTest {
             update.or("null_type is null");
             Assert.assertEquals(
                     SqlFormatter.format(update.getSql()),
-                    SqlFormatter.format("UPDATE ipu_db_demo SET pk = 1 WHERE pk = 1 AND int_type > 1 OR null_type IS NULL")
+                    SqlFormatter.format("UPDATE db_demo SET pk = 1 WHERE pk = 1 AND int_type > 1 OR null_type IS NULL")
             );
             Assert.assertEquals(
                     SqlFormatter.format(update.getSql(false)),
-                    SqlFormatter.format("UPDATE ipu_db_demo SET pk = 1 WHERE pk = 1 AND int_type > 1 OR null_type IS NULL")            );
+                    SqlFormatter.format("UPDATE db_demo SET pk = 1 WHERE pk = 1 AND int_type > 1 OR null_type IS NULL")            );
         } catch (Exception e) {
             Assert.fail(e.getMessage());
         }
