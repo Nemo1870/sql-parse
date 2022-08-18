@@ -194,7 +194,7 @@ public class Insert extends com.sql.parse.statement.Insert {
      */
     public Insert setSelect(com.sql.parse.statement.Select select) {
         if (insert.getItemsList() == null) {
-            Select s = (Select) select;
+            Select s = Select.parse(select.getSql(false));
             if (insert.getSelect() == null) {
                 insert.setUseValues(false);
             }
